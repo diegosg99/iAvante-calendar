@@ -9,29 +9,102 @@
   </div>
 </div>
 <br />
-
-<div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                {{months[viewDate.getMonth()].days}}
-                <td>{{months[viewDate.getMonth()].name}}</td>
-                <td>Granada</td>
-                <td>Málaga</td>
-                <td>Almería</td>
-                <td>Cádiz</td>
-                <td>Córdoba</td>
-                <td>Huelva</td>
-                <td>Jaén</td>
-                <td>Sevilla</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let day of months[viewDate.getMonth()].days">
-                <td>{{day}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-9">
+        <table class="table table-striped" style="border-right: solid 1px gray">
+            <thead class="thead-light">
+                <tr>
+                    <td class="dayCol">{{months[viewDate.getMonth()].name}}</td>
+                    <td class="text-center">Granada</td>
+                    <td class="text-center">Málaga</td>
+                    <td class="text-center">Almería</td>
+                    <td class="text-center">Cádiz</td>
+                    <td class="text-center">Córdoba</td>
+                    <td class="text-center">Huelva</td>
+                    <td class="text-center">Jaén</td>
+                    <td class="text-center">Sevilla</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let day of months[viewDate.getMonth()].days">
+                    <td  class="dayCol text-center">{{day}}</td>
+                    <td class="text-center" *ngFor="let province of provinces" (click)="this.dayClicked(province.code,months[viewDate.getMonth()].code,day)"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-3 form">
+        <form>
+            <div class="form-row">
+                    <h4>Crear evento</h4>
+            </div>
+            <div class="form-row row">
+                <div class="input-box col-4">
+                    <label for="day" class="form-control" style="border: none;">Día</label>
+                    <select class="form-select" id="day" formControlName="day">
+                        <option class="form-control mb-1 input-field" *ngFor="let day of months[viewDate.getMonth()].days" value={{day}}>{{day}}</option>
+                    </select>
+                </div>
+                <div class="input-box col-4">
+                    <label for="month" class="form-control" style="border: none;">Mes</label>
+                    <select class="form-select" id="month">
+                        <option class="form-control mb-1 input-field" *ngFor="let month of months" value={{month.name}}>{{month.name}}</option>
+                    </select>
+                </div>
+                <div class="input-box col-4">
+                    <label for="day" class="form-control" style="border: none;">Província</label>
+                    <select class="form-select" id="province">
+                        <option class="form-control mb-1 input-field" *ngFor="let provincia of provinces" value={{provincia.code}}>{{provincia.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" class="form-control mb-1 input-field" id="code" placeholder="Código de curso">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="name" class="form-control mb-1  input-field" placeholder="Nombre del curso">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="rooms" class="form-control mb-1  input-field" placeholder="Aulas">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="talleres" class="form-control mb-1  input-field" placeholder="Talleres">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="location" class="form-control mb-1  input-field" placeholder="Ubicación">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="hours" class="form-control mb-1  input-field" placeholder="Horario">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="breakfast" class="form-control mb-1  input-field" placeholder="Desayuno">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-box">
+                    <input type="text" id="lunch" class="form-control mb-1  input-field" placeholder="Almuerzo">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-center">
+                    <button class="btn btn-primary mt-3">Crear evento</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- Sidebar -->

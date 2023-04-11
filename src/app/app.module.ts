@@ -11,6 +11,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CalendarEvent } from './shared/models/event.model';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EventService } from './shared/services/event.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +30,10 @@ import { CommonModule } from '@angular/common';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
